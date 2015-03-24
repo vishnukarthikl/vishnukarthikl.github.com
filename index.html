@@ -1,0 +1,47 @@
+---
+layout: default
+title: foldl.me
+---
+
+<div id="home">
+  <ul id="archive">
+    {% for post in paginator.posts %}
+    {% if post.main or post.category == 'links' %}
+    <li>
+      <time datetime="{{ post.date | date_to_xmlschema }}">
+        {{ post.date | date: '%d %b<span class="year"> %Y</span>' }}
+      </time>
+
+      <div class="description">
+        <a href="{{ post.url }}">
+          {% if post.display_title %}
+            {{ post.display_title }}
+          {% else %}
+            {{ post.title }}
+          {% endif %}
+        </a>
+
+        <p class="excerpt">
+          {% if post.excerpt %}
+            {{ post.excerpt }}
+          {% else %}
+            {{ post.content | split: '</p>' | first }}</p>
+          {% endif %}
+        </p>
+      </div>
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+
+  <div id="pagination">
+    <p><a href="/all.html">(view all, unfiltered)</a></p>
+    {% if paginator.page > 1 %}
+    <a href="/page{{ paginator.previous_page }}">&laquo; previous</a>
+    {% endif %}
+
+    {% if paginator.page < paginator.total_pages %}
+    <a href="/page{{ paginator.next_page }}">next &raquo;</a>
+    {% endif %}
+  </div>
+</div>

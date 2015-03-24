@@ -1,0 +1,14 @@
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+permalink: /:year/:title/
+paginate: 20
+
+owner:
+  name: vishnu
+  email: vishnu.carbon@gmail.com
+
+name: FullOuterJoin
+url: http://fullouterjoin.me

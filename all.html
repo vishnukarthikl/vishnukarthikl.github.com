@@ -1,0 +1,41 @@
+---
+layout: default
+title: All Posts
+---
+
+<div id="home">
+  <p id="intro">
+    This page lists all posts ever published on this site. It includes more
+    personal posts and off-topic ramblings that I choose to not feature on the
+    home page.
+  </p>
+
+  <ul id="archive">
+    {% for post in site.posts %}
+    <li>
+      <time datetime="{{ post.date | date_to_xmlschema }}">
+        {{ post.date | date: '%d %b<span class="year"> %Y</span>' }}
+      </time>
+
+      <div class="description">
+        <a href="{{ post.url }}">
+          {% if post.display_title %}
+            {{ post.display_title }}
+          {% else %}
+            {{ post.title }}
+          {% endif %}
+        </a>
+
+        <p class="excerpt">
+          {% if post.excerpt %}
+            {{ post.excerpt }}
+          {% else %}
+            {{ post.content | split: '</p>' | first }}</p>
+          {% endif %}
+        </p>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+</div>
