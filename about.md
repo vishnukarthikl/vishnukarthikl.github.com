@@ -11,7 +11,7 @@ I enjoy reading upon random stuff. Machine learning and Artificial Intelligence 
 
 One other thing that I am crazy about is [Ultimate Frisbee][7]. I play for a team called [Discreed][8] in Coimbatore. Would love to play in an international tournament, someday :)
 
-I'm going to post about random technical stuff, things that kindles my curiosity and my frustrations with the system. And there is a deep meaning in the blog title.
+I'm going to post about random technical stuff, things that kindles my curiosity and my frustrations with the system. And there is a deep meaning in the blog title. Blog style inspired by Jon Gauthier.
 
 [1]: http://www.thoughtworks.com/products/twist-agile-testing
 [2]: http://www.motechproject.org/about/implementations.html
