@@ -67,24 +67,25 @@
 
 <p>Most of the work is done for moving x from its original position to the sorted position. The number of comparisons made with x and other elements of the list depends on the size of the list. If the recursion call had split the list perfectly into two, the work gets reduced by half at each level.</p>
 
-<p>Work done at each level i is <strong><code class="highlighter-rouge">n/pow(2,i)</code></strong><br />
-No of levels is <strong><code class="highlighter-rouge">log(n)</code></strong><br />
-So the total work done is <strong><code class="highlighter-rouge">n * log(n)</code></strong><br />
+<p>No of splits at level i is <code>2^i</code><br />
+Work done at each split at level i is <code>n/2^i</code><br />
+No of levels is <code>log(n)</code><br />
+So the total work done is <code>n * log(n)</code><br />
 This can also be derived from the <a href="https://en.wikipedia.org/wiki/Master_theorem">master theorem</a></p>
 
-<p>But that is the ideal case, Finding a perfect pivot element is not guaranteed. In order not to put too much work in finding the pivot element, let’s see how different strategies affect the performance.</p>
+<p>But that is the ideal case, Finding a perfect pivot element is not guaranteed. Based on the pivot the list can be split anywhere between (1, n-1) to (n/2, n/2). If the split keeps happening at (1,n-1), then the work done at each level will be <code>n</code> and the number of levels will also be <code>n</code> so the time complexity will be <code>O(n^2)</code>.</p>
 
-<p>I am randomly generating a list of 1,000,000 numbers and sorting them by choosing a pivot from</p>
+<p>In order not to put too much work in finding the pivot element, let’s see how different strategies affect the performance. I am randomly generating a list of 1,000,000 numbers and sorting them by choosing a pivot from</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>* first element
-* last element
-* median
-</code></pre>
-</div>
+<ul>
+  <li>first element</li>
+  <li>last element</li>
+  <li>median</li>
+</ul>
 
-<p>You might think that finding median would be O(n), but this is a simplified version where we take the 2nd largest element comparing the first, middle, last element from the list (which takes O(1)).</p>
+<p>You might think that finding median would be O(n), but this is a simplified version where we take the 2nd largest element comparing the first, middle and last element from the split list (which takes O(1)).</p>
 
-<p>Heuristically, you can see that there is almost <strong>15%</strong> less comparisons when the pivot is chosen using the median strategy.</p>
+<p>Heuristically, you can see that there is almost <strong>15%</strong> less comparisons when the pivot is chosen using the median strategy. This comes somewhere between <code>O(n^2)</code> and <code>O(n*log(n))</code> since the split is still not guaranteed to be exactly half.</p>
 
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">random</span>
 
@@ -100,8 +101,9 @@ This can also be derived from the <a href="https://en.wikipedia.org/wiki/Master_
                     <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">numbers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
             <span class="n">numbers</span><span class="p">[</span><span class="n">start</span><span class="p">],</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">numbers</span><span class="p">[</span><span class="n">start</span><span class="p">]</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">+</span> <span class="n">quick_sort</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pivot_chooser</span><span class="p">)</span> <span class="o">+</span> <span class="n">quick_sort</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span>
-                                                                                                 <span class="n">pivot_chooser</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">+</span>
+                     <span class="n">quick_sort</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pivot_chooser</span><span class="p">)</span> <span class="o">+</span>
+                     <span class="n">quick_sort</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">pivot_chooser</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="mi">0</span>
 
@@ -126,11 +128,10 @@ This can also be derived from the <a href="https://en.wikipedia.org/wiki/Master_
 
 <p>Output:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>First Element Pick 24620279
+<pre><code>First Element Pick 24620279
 Last Element Pick 24409932
 Median Element Pick 20920898
 </code></pre>
-</div>
 
 
     </div>

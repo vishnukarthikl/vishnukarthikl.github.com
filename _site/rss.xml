@@ -5,8 +5,8 @@
     <link>http://fullouterjoin.me</link>
     <atom:link href="http://fullouterjoin.me/rss.xml" rel="self" type="application/rss+xml" />
     <language>en-US</language>
-    <pubDate>Wed, 25 Mar 2015 00:04:35 +0530</pubDate>
-    <lastBuildDate>Wed, 25 Mar 2015 00:04:35 +0530</lastBuildDate>
+    <pubDate>Wed, 25 Mar 2015 12:42:27 +0530</pubDate>
+    <lastBuildDate>Wed, 25 Mar 2015 12:42:27 +0530</lastBuildDate>
 
     
     <item>
@@ -19,24 +19,25 @@
 
 &lt;p&gt;Most of the work is done for moving x from its original position to the sorted position. The number of comparisons made with x and other elements of the list depends on the size of the list. If the recursion call had split the list perfectly into two, the work gets reduced by half at each level.&lt;/p&gt;
 
-&lt;p&gt;Work done at each level i is &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;n/pow(2,i)&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt;
-No of levels is &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;log(n)&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt;
-So the total work done is &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;n * log(n)&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;p&gt;No of splits at level i is &lt;code&gt;2^i&lt;/code&gt;&lt;br /&gt;
+Work done at each split at level i is &lt;code&gt;n/2^i&lt;/code&gt;&lt;br /&gt;
+No of levels is &lt;code&gt;log(n)&lt;/code&gt;&lt;br /&gt;
+So the total work done is &lt;code&gt;n * log(n)&lt;/code&gt;&lt;br /&gt;
 This can also be derived from the &lt;a href=&quot;https://en.wikipedia.org/wiki/Master_theorem&quot;&gt;master theorem&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;But that is the ideal case, Finding a perfect pivot element is not guaranteed. In order not to put too much work in finding the pivot element, let’s see how different strategies affect the performance.&lt;/p&gt;
+&lt;p&gt;But that is the ideal case, Finding a perfect pivot element is not guaranteed. Based on the pivot the list can be split anywhere between (1, n-1) to (n/2, n/2). If the split keeps happening at (1,n-1), then the work done at each level will be &lt;code&gt;n&lt;/code&gt; and the number of levels will also be &lt;code&gt;n&lt;/code&gt; so the time complexity will be &lt;code&gt;O(n^2)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;I am randomly generating a list of 1,000,000 numbers and sorting them by choosing a pivot from&lt;/p&gt;
+&lt;p&gt;In order not to put too much work in finding the pivot element, let’s see how different strategies affect the performance. I am randomly generating a list of 1,000,000 numbers and sorting them by choosing a pivot from&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* first element
-* last element
-* median
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;first element&lt;/li&gt;
+  &lt;li&gt;last element&lt;/li&gt;
+  &lt;li&gt;median&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;You might think that finding median would be O(n), but this is a simplified version where we take the 2nd largest element comparing the first, middle, last element from the list (which takes O(1)).&lt;/p&gt;
+&lt;p&gt;You might think that finding median would be O(n), but this is a simplified version where we take the 2nd largest element comparing the first, middle and last element from the split list (which takes O(1)).&lt;/p&gt;
 
-&lt;p&gt;Heuristically, you can see that there is almost &lt;strong&gt;15%&lt;/strong&gt; less comparisons when the pivot is chosen using the median strategy.&lt;/p&gt;
+&lt;p&gt;Heuristically, you can see that there is almost &lt;strong&gt;15%&lt;/strong&gt; less comparisons when the pivot is chosen using the median strategy. This comes somewhere between &lt;code&gt;O(n^2)&lt;/code&gt; and &lt;code&gt;O(n*log(n))&lt;/code&gt; since the split is still not guaranteed to be exactly half.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;random&lt;/span&gt;
 
@@ -52,8 +53,9 @@ This can also be derived from the &lt;a href=&quot;https://en.wikipedia.org/wiki
                     &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 
             &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quick_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pivot_chooser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quick_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                                                                                 &lt;span class=&quot;n&quot;&gt;pivot_chooser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+                     &lt;span class=&quot;n&quot;&gt;quick_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pivot_chooser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+                     &lt;span class=&quot;n&quot;&gt;quick_sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pivot_chooser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
 
@@ -78,11 +80,10 @@ This can also be derived from the &lt;a href=&quot;https://en.wikipedia.org/wiki
 
 &lt;p&gt;Output:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;First Element Pick 24620279
+&lt;pre&gt;&lt;code&gt;First Element Pick 24620279
 Last Element Pick 24409932
 Median Element Pick 20920898
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
 </description>
     </item>

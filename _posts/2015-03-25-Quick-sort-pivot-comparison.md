@@ -10,22 +10,23 @@ Quick sort works by choosing an element x from the list A and places x in the co
 
 Most of the work is done for moving x from its original position to the sorted position. The number of comparisons made with x and other elements of the list depends on the size of the list. If the recursion call had split the list perfectly into two, the work gets reduced by half at each level.
 
-Work done at each level i is **`n/pow(2,i)`**
-No of levels is **`log(n)`**
-So the total work done is **`n * log(n)`**
+No of splits at level i is `2^i`
+Work done at each split at level i is `n/2^i`
+No of levels is `log(n)`
+So the total work done is `n * log(n)`
 This can also be derived from the [master theorem][1]
 
-But that is the ideal case, Finding a perfect pivot element is not guaranteed. In order not to put too much work in finding the pivot element, let's see how different strategies affect the performance.
+But that is the ideal case, Finding a perfect pivot element is not guaranteed. Based on the pivot the list can be split anywhere between (1, n-1) to (n/2, n/2). If the split keeps happening at (1,n-1), then the work done at each level will be `n` and the number of levels will also be `n` so the time complexity will be `O(n^2)`.
 
-I am randomly generating a list of 1,000,000 numbers and sorting them by choosing a pivot from
+In order not to put too much work in finding the pivot element, let's see how different strategies affect the performance. I am randomly generating a list of 1,000,000 numbers and sorting them by choosing a pivot from
 
-    * first element
-    * last element
-    * median
+* first element
+* last element
+* median
 
-You might think that finding median would be O(n), but this is a simplified version where we take the 2nd largest element comparing the first, middle, last element from the list (which takes O(1)).
+You might think that finding median would be O(n), but this is a simplified version where we take the 2nd largest element comparing the first, middle and last element from the split list (which takes O(1)).
 
-Heuristically, you can see that there is almost **15%** less comparisons when the pivot is chosen using the median strategy.
+Heuristically, you can see that there is almost **15%** less comparisons when the pivot is chosen using the median strategy. This comes somewhere between `O(n^2)` and `O(n*log(n))` since the split is still not guaranteed to be exactly half.
 
 {% highlight python %}
 import random
@@ -42,8 +43,9 @@ def quick_sort(numbers, start, end, pivot_chooser):
                     numbers[i], numbers[j] = numbers[j], numbers[i]
 
             numbers[start], numbers[i] = numbers[i], numbers[start]
-            return (end - start) + quick_sort(numbers, start, i - 1, pivot_chooser) + quick_sort(numbers, i + 1, end,
-                                                                                                 pivot_chooser)
+            return ((end - start) +
+                     quick_sort(numbers, start, i - 1, pivot_chooser) +
+                     quick_sort(numbers, i + 1, end, pivot_chooser))
         else:
             return 0
 
