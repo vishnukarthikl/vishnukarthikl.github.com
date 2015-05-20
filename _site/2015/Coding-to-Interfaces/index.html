@@ -1,0 +1,221 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="GitHub Pages" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>Coding to Interfaces - FullOuterJoin</title>
+
+  
+  <meta name="title" content="Coding to Interfaces" />
+  <meta property="og:title" content="Coding to Interfaces" />
+  <meta name="description" content="Don't depend on a Concrete types, Depend on an Interface" />
+  <meta property="og:description" content="Don't depend on a Concrete types, Depend on an Interface" />
+  <meta property="og:site_name" content="FullOuterJoin" />
+  <meta property="og:image" content="" />
+  
+  <meta name="author" content="vishnu" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <link rel="stylesheet" type="text/css" href="/css/libs/jquery.qtip.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css" /><!-- syntax highlighting -->
+  <!--[if IE]>
+      <link rel="stylesheet" type="text/css" href="/css/ie.css" />
+  <![endif]-->
+
+  <script src="/js/libs/modernizr-2.5.3.min.js"></script>
+</head>
+
+<body>
+
+  <div id="container">
+    <aside id="topbar">
+      <div class="inner">
+        <h1><a href="/">FullOuterJoin</a></h1>
+
+        <ul id="quick-links">
+          <li><a href="/">home</a></li>
+          <li><a href="/about.html">about</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <section id="main" role="main">
+      <div class="inner">
+        <article id="single" class="hentry">
+    <header>
+        <h1 class="entry-title">
+            
+            Coding to Interfaces
+            
+        </h1>
+        <time datetime="2015-05-10T00:00:00+05:30">
+            10 May 2015
+        </time>
+    </header>
+
+    <div class="entry-content">
+        <p>Let’s say you are writing a piece of software which generates awesome things with call of a method. But for that you need to fetch some data and process it. For now let’s read a file and get the data.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AwesomenessGenerator</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">readAndProcessData</span><span class="o">(){</span>
+        <span class="c1">//some logic</span>
+        <span class="n">FileReader</span> <span class="n">fileReader</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">FileReader</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="na">read</span><span class="o">();</span> <span class="c1">//read has all the logic to get data</span>
+        <span class="c1">//logic to process the data</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<p>The generator takes in a fileReader and we do some computation and logic with the data.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileReader</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">read</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">data</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="c1">//All The logic of fetching from file goes here</span>
+        <span class="k">return</span> <span class="n">data</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<p>The fileReader is responsible to take care of itself to read from a file. (Let’s not complicate things by sending which file to read from at least for now!)</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">AwesomenessGenerator</span> <span class="n">awesomenessGenerator</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">AwesomenessGenerator</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">awesomenessGenerator</span><span class="o">.</span><span class="na">readAndProcessData</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+
+<p>Your software works like a charm, it generates awesomeness whenever you want it. You are happy that everything works.</p>
+
+<p>After some days, you feel like reading from a file is so yesterday. You want to read from a database. So now you have to change your code. Let’s see how we usually go about doing that. We would then create and use a DatabaseReader in our AwesomenessGenerator.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AwesomenessGenerator</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">readAndProcessData</span><span class="o">(){</span>
+        <span class="c1">//some logic</span>
+        <span class="n">DatabaseReader</span> <span class="n">databaseReader</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">DatabaseReader</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">data</span> <span class="o">=</span> <span class="n">databaseReader</span><span class="o">.</span><span class="na">read</span><span class="o">();</span> <span class="c1">//read has all the logic to get data</span>
+        <span class="c1">//some other logic</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<p>I had to do the change in the generator. That is not the right way to do it because, what if you had all the tests that used fileReader and now since we have changed it we have to change the test as well. And what if tomororw we need to read from a cloud or something we need to make the change to use a CloudReader or something. So how can we bring a change to a system without affecting it’s already placed logic. We should be able to swap the reader without changing the generator’s code.</p>
+
+<p>Polymorphism to the rescue!</p>
+
+<p>Let’s create an interface called a Reader(not the java.io.Reader but our own)</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Reader</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">read</span><span class="o">();</span>
+<span class="o">}</span></code></pre></div>
+
+<p>Let’s inherit all our concrete readers ( FileReader, DatabaseReader, CloudReader, SomeThingFromFutureReader), so every reader needs to have a read() implemented.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileReader</span> <span class="kd">implements</span> <span class="n">Reader</span><span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">read</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">data</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="c1">//All The logic of fetching from file goes here</span>
+        <span class="k">return</span> <span class="n">data</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DatabaseReader</span> <span class="kd">implements</span> <span class="n">Reader</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">read</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">data</span><span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="c1">//some logic to connect to the db and get some data</span>
+        <span class="k">return</span> <span class="n">data</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<p>And inorder for the generator to use a reader we just pass in the interface Reader and not the concrete Reader.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">DatabaseReader</span><span class="o">();</span>
+        <span class="n">AwesomenessGenerator</span> <span class="n">awesomenessGenerator</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">AwesomenessGenerator</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">awesomenessGenerator</span><span class="o">.</span><span class="na">readAndProcessData</span><span class="o">(</span><span class="n">reader</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AwesomenessGenerator</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">readAndProcessData</span><span class="o">(</span><span class="n">Reader</span> <span class="n">reader</span><span class="o">){</span>
+        <span class="c1">//some logic</span>
+        <span class="n">String</span> <span class="n">data</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">read</span><span class="o">();</span> <span class="c1">//read has all the logic to get data</span>
+        <span class="c1">//some other logic</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<p>we can safetly call the read() on the interface. And depending on the concrete implementation that has been in the reference of the interface, that particular read operation would be called. So in the new generator code we pass in DatabaseReader to readAndProcessData() and DatabaseReader’s read() would be called inside readAndProcessData(). And if we pass in a FileReader, that particular read() would be called. So we have made the readers switchable. As long as any readers implement the Reader then it can be switched. It is assumed that the concrete reader’s read() would take care of the logic on how it is going to read. In the end the generator just needs the data, it doesn’t care how it was fetched from.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">FileReader</span><span class="o">();</span>
+        <span class="n">AwesomenessGenerator</span> <span class="n">awesomenessGenerator</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">AwesomenessGenerator</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">awesomenessGenerator</span><span class="o">.</span><span class="na">readAndProcessData</span><span class="o">(</span><span class="n">reader</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+
+<p>In the above code we just swapped DatabaseReader to FileReader without changing a single line of our Generator. Now the Generator can possibly read from a reader that doesn’t even exist. All the new reader has to do is to implement the Reader interface. We would just have to write test for that particular newly added reader and not to the already tested and working Generator. The tests for the Generator should have used a mocked Reader.</p>
+
+<p>There is a way to plug in different readers without even having to change the main(). For now we instantiate the Reader with a concrete Reader and pass it to the readAndProcessData(). For that we have to change the java code and re compile and re deploy. If we don’t even want to change it then there is something called Dependency Injection(More on it later). For now we just wrote our generator which takes in an interface rather than a concrete class making it easy for us to switch between any implementation of that interface.</p>
+
+<p>Fun fact: Strategy Pattern also works using polymorphism.</p>
+
+    </div>
+</article>
+
+
+<div id="related">
+    <h2>Related Posts</h2>
+    <ul class="posts">
+        
+        <li><span>29 Apr 2015</span> &raquo; <a href="/2015/Perils-of-Mutability/">Perils of Mutability</a></li>
+        
+        <li><span>03 Apr 2015</span> &raquo; <a href="/2015/Pass-by-Value-or-Reference/">Pass by Value or Reference</a></li>
+        
+        <li><span>25 Mar 2015</span> &raquo; <a href="/2015/Quick-sort-pivot-comparison/">Quick sort pivot choose strategy</a></li>
+        
+    </ul>
+</div>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'fullouterjoin';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+        <footer>
+	        <div class="vcard">
+            <a class="email fn n" href="mailto: vishnu.carbon@gmail.com">
+              <span class="given-name">vishnu</span>
+            </a> &mdash; <span class="adr">
+              <span class="locality">Coimbatore</span>, <span class="region">Tamil Nadu</span>
+            </span>
+	        </div>
+        </footer>
+      </div>
+    </section>
+  </div>
+
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.8.3/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="/js/libs/jquery.qtip.min.js"></script>
+  <script type="text/javascript" src="/js/script.js"></script>
+
+</body>
+</html>
