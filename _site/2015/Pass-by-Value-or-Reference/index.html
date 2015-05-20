@@ -1,0 +1,274 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="GitHub Pages" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>Pass by Value or Reference - FullOuterJoin</title>
+
+  
+  <meta name="title" content="Pass by Value or Reference" />
+  <meta property="og:title" content="Pass by Value or Reference" />
+  <meta name="description" content="Are Java's method arguments pass by value of pass by reference?" />
+  <meta property="og:description" content="Are Java's method arguments pass by value of pass by reference?" />
+  <meta property="og:site_name" content="FullOuterJoin" />
+  <meta property="og:image" content="" />
+  
+  <meta name="author" content="vishnu" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <link rel="stylesheet" type="text/css" href="/css/libs/jquery.qtip.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css" /><!-- syntax highlighting -->
+  <!--[if IE]>
+      <link rel="stylesheet" type="text/css" href="/css/ie.css" />
+  <![endif]-->
+
+  <script src="/js/libs/modernizr-2.5.3.min.js"></script>
+</head>
+
+<body>
+
+  <div id="container">
+    <aside id="topbar">
+      <div class="inner">
+        <h1><a href="/">FullOuterJoin</a></h1>
+
+        <ul id="quick-links">
+          <li><a href="/">home</a></li>
+          <li><a href="/about.html">about</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <section id="main" role="main">
+      <div class="inner">
+        <article id="single" class="hentry">
+    <header>
+        <h1 class="entry-title">
+            
+            Pass by Value or Reference
+            
+        </h1>
+        <time datetime="2015-04-03T00:00:00+05:30">
+            03 April 2015
+        </time>
+    </header>
+
+    <div class="entry-content">
+        <p>Hello awesome people! When you are writing functions to modularize your code(if you are not, then it might be a code smell), you should know how the arguments are passed to the function and how they are stored. Let’s take a simple example. We have a function which takes in an int and increments it in the function.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Functions</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Before increment: &quot;</span> <span class="o">+</span> <span class="n">a</span><span class="o">);</span>
+        <span class="n">increment</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;After increment: &quot;</span> <span class="o">+</span> <span class="n">a</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">increment</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">number</span><span class="o">++;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<p>Think about what the output would be in your mind. (In Java arguments are always sent as value)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>OUTPUT:
+Before increment: 10
+After increment: 10
+</code></pre>
+</div>
+
+<p>When increment is called, the state of the program would be something like this.<br />
+Actual Argument = a<br />
+Formal Parameter = number<br />
+Since it is a pass by value a’s value is copied to number. And when ever we change the number, we are just changing the value of the number. When increment returns the stack frame(of increment) is destroyed and then we see no change in a.</p>
+
+<p>Let’s write some more functions. I have a student class with name and age with public modifier just so that I can access it easily outside( I can use setter also but just for simplicity)</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Student</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&quot;Student{&quot;</span> <span class="o">+</span>
+                <span class="s">&quot;name=&#39;&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="sc">&#39;\&#39;&#39;</span> <span class="o">+</span>
+                <span class="s">&quot;, age=&quot;</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span>
+                <span class="sc">&#39;}&#39;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<p>And I have created a function called changeStudent which changes the name and age of the student that was passed into it.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Functions</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">Student</span> <span class="n">student</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Student</span><span class="o">(</span><span class="s">&quot;vishnu&quot;</span><span class="o">,</span> <span class="mi">21</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Before changeStudent: &quot;</span> <span class="o">+</span> <span class="n">student</span><span class="o">);</span>
+        <span class="n">changeStudent</span><span class="o">(</span><span class="n">student</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;After changeStudent: &quot;</span> <span class="o">+</span> <span class="n">student</span><span class="o">);</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">changeStudent</span><span class="o">(</span><span class="n">Student</span> <span class="n">anotherStudent</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">anotherStudent</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">&quot;karthik&quot;</span><span class="o">;</span>
+        <span class="n">anotherStudent</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre></div>
+
+<p>Can you predict the output when you run main. Think about it.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>OUTPUT:
+Before changeStudent: Student{name='vishnu', age=21}
+After changeStudent: Student{name='karthik', age=100}
+</code></pre>
+</div>
+
+<p>What sorcery is this!! Just now we saw that Java sent the arguments as pass by value. And any change to the copy of the value should not affect the actual argument. True. What exactly happened when we passed in student was, the reference pointed to the student was passed by value(copied to anotherStudent). Say what? Is it Value or Reference!!!</p>
+
+<p>To clearly explain what a reference is, imagine references are like remote controls. When ever we create a new object and assign it to the reference, we can interact with the object through the dot operator. So when we created student we created a remote control also and when we did a new Student(), we created something that the remote can point to. And we can interact with it by changing the properties like student.name = “blah”.</p>
+
+<p>So when we called the function, student remote(reference as a value) was copied as anotherStudent. The actual remote was not given to the function, but it’s copy was. They both are now pointing to the same Student object. So what ever change we did using the anotherStudent in the function is reflected in the Student object. When the function returns the stack frame gets destroyed along with the anotherStudent remote(reference) since function variables and parameters are stored in the stack.</p>
+
+<p>Now let’s modify the function.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Functions</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">Student</span> <span class="n">student</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Student</span><span class="o">(</span><span class="s">&quot;vishnu&quot;</span><span class="o">,</span> <span class="mi">21</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Before changeStudent: &quot;</span> <span class="o">+</span> <span class="n">student</span><span class="o">);</span>
+        <span class="n">changeStudent</span><span class="o">(</span><span class="n">student</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;After changeStudent: &quot;</span> <span class="o">+</span> <span class="n">student</span><span class="o">);</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">changeStudent</span><span class="o">(</span><span class="n">Student</span> <span class="n">anotherStudent</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">anotherStudent</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Student</span><span class="o">(</span><span class="s">&quot;karthik&quot;</span><span class="o">,</span> <span class="mi">100</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre></div>
+
+<p>Let’s try to predict what the output would be.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>OUTPUT:
+Before changeStudent: Student{name='vishnu', age=21}
+After changeStudent: Student{name='vishnu', age=21}
+</code></pre>
+</div>
+
+<p>Strange or is it! You said the reference is passed and we can change the value pointed by the reference. True! But I didn’t say we can change the reference itself. This is where the subtle difference is.</p>
+
+<p>When we passed in student, the reference(remote) was copied to the anotherStudent reference(remote). We changed what was pointed by anotherStudent by a newly created Student. But this did not change the student reference which was pointing to the old student object in the main(). So now both the reference are pointing to two different student objects. And when the function returns anotherStudent reference is destroyed along with the stack frame but not the new student that was created inside changeStudent(). This is because all the objects that are created are placed in the heap and not in the stack. So it will be there till the garbage collector kicks in.</p>
+
+<p>Let’s have a quick programming trial. Let’s try to write a swap function which swaps two students that are passed in. Please try it out.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">Student</span> <span class="n">shruthi</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Student</span><span class="o">(</span><span class="s">&quot;shruthi&quot;</span><span class="o">,</span> <span class="mi">18</span><span class="o">);</span>
+        <span class="n">Student</span> <span class="n">hari</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Student</span><span class="o">(</span><span class="s">&quot;hari&quot;</span><span class="o">,</span> <span class="mi">21</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Before Swap: &quot;</span> <span class="o">+</span> <span class="n">shruthi</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">hari</span><span class="o">);</span>
+        <span class="n">swap</span><span class="o">(</span><span class="n">shruthi</span><span class="o">,</span> <span class="n">hari</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;After Swap: &quot;</span> <span class="o">+</span> <span class="n">shruthi</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">hari</span><span class="o">);</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="n">Student</span> <span class="n">thisStudent</span><span class="o">,</span> <span class="n">Student</span> <span class="n">thatStudent</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Student</span> <span class="n">temp</span><span class="o">;</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">thisStudent</span><span class="o">;</span>
+        <span class="n">thisStudent</span> <span class="o">=</span> <span class="n">thatStudent</span><span class="o">;</span>
+        <span class="n">thatStudent</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+    <span class="o">}</span></code></pre></div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>OUTPUT:
+Before Swap: Student{name='shruthi', age=18} Student{name='hari', age=21}
+After Swap: Student{name='shruthi', age=18} Student{name='hari', age=21}
+</code></pre>
+</div>
+
+<p>Well that was a fail! What exactly happened was shruthi’s reference and hari’s reference(as a value) was passed to thisStudent and thatStudent respectively. When we said <code class="highlighter-rouge">temp = thisStudent</code>, the reference temp is now pointing to the same object as that was pointed by thisStudent. So now shruthi, thisStudent and temp are all pointing to shruthi object. When we said thisStudent = thatStudent. We are changing what was pointed by thisStudent to what is being pointed by thatStudent(who is pointing to hari object). So now thisStudent is pointing to hari. This did not change any of the other references (shruthi and temp are still pointing to shruthi object).<br />
+When we said thatStudent = temp, we are making thatStudent point to the same thing temp is pointing(to shruthi object). All these making references point to different objects didn’t even alter what shruthi and hari references were pointing at. So when we return from the function we see that they are still pointing to the same objects.</p>
+
+<p>So how can we then actually change the reference. We’ll we can’t in java at least. If it was C or C++ where you have those funky pointers, you can pass a object reference’s address so that you can change the reference itself.<br />
+If it was C, swap could have been written like this</p>
+
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argv</span><span class="p">,</span><span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+
+        <span class="n">Student</span> <span class="o">*</span> <span class="n">shruthi</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Student</span><span class="p">(</span><span class="s">&quot;shruthi&quot;</span><span class="p">,</span> <span class="mi">18</span><span class="p">);</span>
+        <span class="n">Student</span> <span class="o">*</span> <span class="n">hari</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Student</span><span class="p">(</span><span class="s">&quot;hari&quot;</span><span class="p">,</span> <span class="mi">21</span><span class="p">);</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Before Swap: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">shruthi</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">hari</span><span class="p">);</span>
+        <span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shruthi</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hari</span><span class="p">);</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;After Swap: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">shruthi</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">hari</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="n">Student</span> <span class="o">**</span> <span class="n">thisStudent</span><span class="p">,</span> <span class="n">Student</span> <span class="o">**</span> <span class="n">thatStudent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Student</span> <span class="o">*</span> <span class="n">temp</span><span class="p">;</span>
+        <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="o">*</span><span class="n">thisStudent</span><span class="p">;</span>
+        <span class="o">*</span><span class="n">thisStudent</span> <span class="o">=</span> <span class="o">*</span><span class="n">thatStudent</span><span class="p">;</span>
+        <span class="o">*</span><span class="n">thatStudent</span> <span class="o">=</span> <span class="o">*</span><span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></div>
+
+<p>So that is all folks. Sometimes these function calls can get tricky always keep in mind the language specs and code accordingly. I always feel that mutating the actual references in a function call is not very evident to the consumers of the method call. So be wary of mutation when writing API methods.</p>
+
+    </div>
+</article>
+
+
+<div id="related">
+    <h2>Related Posts</h2>
+    <ul class="posts">
+        
+        <li><span>25 Mar 2015</span> &raquo; <a href="/2015/Quick-sort-pivot-comparison/">Quick sort pivot choose strategy</a></li>
+        
+    </ul>
+</div>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'fullouterjoin';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+        <footer>
+	        <div class="vcard">
+            <a class="email fn n" href="mailto: vishnu.carbon@gmail.com">
+              <span class="given-name">vishnu</span>
+            </a> &mdash; <span class="adr">
+              <span class="locality">Coimbatore</span>, <span class="region">Tamil Nadu</span>
+            </span>
+	        </div>
+        </footer>
+      </div>
+    </section>
+  </div>
+
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.8.3/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="/js/libs/jquery.qtip.min.js"></script>
+  <script type="text/javascript" src="/js/script.js"></script>
+
+</body>
+</html>
