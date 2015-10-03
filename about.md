@@ -3,9 +3,9 @@ title: About
 layout: default
 ---
 
-Hi, I'm **Vishnu Karthik**. I am a self proclaimed polyglot programmer, who is obsessed in getting my hands dirty with bleeding edge technology. I'm an ex-ThoughtWorker who worked with wonderful people on [Twist][1] and few implementations of [MoTech][2] including Kilkari and Care.
+Hi, I'm **Vishnu Lakshmanan**. I am a self proclaimed polyglot programmer, who is obsessed in getting my hands dirty with bleeding edge technology. I am currently a graduate student at University of Southern California where I'm majoring in Computer Science. I'm an ex-ThoughtWorker who worked with wonderful people on [Gauge][3] and few implementations of [MoTech][2] including Kilkari and Care. I also co-founded a startup called [Vorkout][6], a gym analytics product with which gym owners can run their gyms effectively by getting financial predictions and customer analysis. If you want to hire me, please check out my [LinkedIn][9].
 
-I was part of the core team which designed and released the early versions of [Gauge][3], so that makes me an expert in its internal workings. I also happened to collaborate on few other open source projects like [Calabash-Android-Java][4] and [Calabash-iOS-Java][5]. I am currently working on a startup [gig][6](more info on it later).
+I was part of the core team which designed and released the early versions of [Gauge][3], so that makes me an expert in its internal workings. I also happened to collaborate on few other open source projects like [Calabash-Android-Java][4] and [Calabash-iOS-Java][5]. 
 
 I enjoy reading upon random stuff. Machine learning and Artificial Intelligence are the recent things that I am hooked with, and thus falling in love with maths.
 
@@ -13,7 +13,6 @@ One other thing that I am crazy about is [Ultimate Frisbee][7]. I play for a tea
 
 I'm going to post about random technical stuff, things that kindles my curiosity and my frustrations with the system. And there is a deep meaning in the blog title. Blog style inspired by Jon Gauthier.
 
-[1]: http://www.thoughtworks.com/products/twist-agile-testing
 [2]: http://www.motechproject.org/about/implementations.html
 [3]: http://http://getgauge.io/
 [4]: https://github.com/vishnukarthikl/calabash-android-java
@@ -21,13 +20,14 @@ I'm going to post about random technical stuff, things that kindles my curiosity
 [6]: http://vorkout.com/
 [7]: https://en.wikipedia.org/wiki/Ultimate_%28sport%29
 [8]: https://www.facebook.com/pages/DisCreed-Ultimate-Frisbee-Coimbatore-UFC/221724301228435
+[9]: https://www.linkedin.com/in/vishnukl
 
 ### Active in
 
 * [GitHub](https://github.com/vishnukarthikl)
 * [Twitter](https://twitter.com/morbidgod)
 * [Coursera](https://www.coursera.org/user/i/17740c4a05b090f1268f4479a39d6bc7)
-* [LinkedIn](in.linkedin.com/in/vishnukarthik7/en)
+* [LinkedIn](https://www.linkedin.com/in/vishnukl)
 * [Stack Overflow](https://stackoverflow.com/users/1553655/vishnu)
 * [Goodreads](https://www.goodreads.com/user/show/4107646-vishnu-karthik)
 
