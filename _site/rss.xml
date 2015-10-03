@@ -5,14 +5,32 @@
     <link>http://fullouterjoin.me</link>
     <atom:link href="http://fullouterjoin.me/rss.xml" rel="self" type="application/rss+xml" />
     <language>en-US</language>
-    <pubDate>Wed, 20 May 2015 13:19:45 +0530</pubDate>
-    <lastBuildDate>Wed, 20 May 2015 13:19:45 +0530</lastBuildDate>
+    <pubDate>Sat, 03 Oct 2015 13:05:19 -0700</pubDate>
+    <lastBuildDate>Sat, 03 Oct 2015 13:05:19 -0700</lastBuildDate>
 
+    
+    <item>
+      <title>Longboarding</title>
+      <link>http://fullouterjoin.me/2015/Longboarding/</link>
+      <pubDate>Sat, 03 Oct 2015 00:00:00 -0700</pubDate>
+      <author></author>
+      <guid>http://fullouterjoin.me/2015/Longboarding/</guid>
+      <description>&lt;p&gt;One thing that I noticed when I was first went to USC was that there were lot of people in stakeboards and longboards. I liked how you can simply cruise around without much effort. I used to bike to all the places when I was India. I hated walking around campus going from one class to the other. So I borrowed a longboard from a friend and tried it out a few times but really couldn’t get the hang of it. Then I just chucked the idea of getting one myself.&lt;/p&gt;
+
+&lt;p&gt;Every time I walk to campus, I see people sliding past me. It was just teasing me. I was determined to learn it. What better way than just to buy one, so that you are obliged to learn it or it will be a waste of money. After researching about different types of boards, I finally decided to by &lt;a href=&quot;http://www.amazon.com/Sector-dropthrough-Longboard-Skateboard-42-0-Inch/dp/B007SDJJFO?tag=vglnkc2892-20&quot;&gt;Sector 9 Lookout&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After waiting in front of the door for the whole day(thanks to UPS’s unpredictable status) for the package to arrive, I finally got my hands on the baby. It looked amazing. I went to my backyard to try it out. After eating shit couple of times, I kinda got the hang of it.&lt;/p&gt;
+
+&lt;p&gt;The next day I took it to campus, I was also afraid of eating shit and getting embarrassed in front of people. But yea YOLO. It turned out to be fine after all, Now I’m cruising around the campus, enjoying the cool breeze in my face.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/longboarding.jpg&quot; alt=&quot;foo&quot; /&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Dependency Injection</title>
       <link>http://fullouterjoin.me/2015/Dependency-Injection/</link>
-      <pubDate>Wed, 20 May 2015 00:00:00 +0530</pubDate>
+      <pubDate>Wed, 20 May 2015 00:00:00 -0700</pubDate>
       <author></author>
       <guid>http://fullouterjoin.me/2015/Dependency-Injection/</guid>
       <description>&lt;p&gt;When I was doing my first project in my TWU(ThoughtWorks University) we were building a webapp and we used Spring framework. I would have heard the word ‘dependency injection’ 100 times/day. When I started out, I didn’t know anything about it. I thought it must be some complicated thing because of its hip name. But later I found out it is so simple, yet so powerful.&lt;/p&gt;
@@ -94,7 +112,7 @@
     <item>
       <title>Coding to Interfaces</title>
       <link>http://fullouterjoin.me/2015/Coding-to-Interfaces/</link>
-      <pubDate>Sun, 10 May 2015 00:00:00 +0530</pubDate>
+      <pubDate>Sun, 10 May 2015 00:00:00 -0700</pubDate>
       <author></author>
       <guid>http://fullouterjoin.me/2015/Coding-to-Interfaces/</guid>
       <description>&lt;p&gt;Let’s say you are writing a piece of software which generates awesome things with call of a method. But for that you need to fetch some data and process it. For now let’s read a file and get the data.&lt;/p&gt;
@@ -207,7 +225,7 @@
     <item>
       <title>Perils of Mutability</title>
       <link>http://fullouterjoin.me/2015/Perils-of-Mutability/</link>
-      <pubDate>Wed, 29 Apr 2015 00:00:00 +0530</pubDate>
+      <pubDate>Wed, 29 Apr 2015 00:00:00 -0700</pubDate>
       <author></author>
       <guid>http://fullouterjoin.me/2015/Perils-of-Mutability/</guid>
       <description>&lt;p&gt;I was doing a course on coursera called &lt;a href=&quot;https://www.coursera.org/course/proglang&quot;&gt;Programming Languages&lt;/a&gt;. Finishing that course was a turning point for me to understand how languages work and acquire the adeptness to learn a new language. I was really interested when the topic mutability was being discussed. Mutability refers to the ability to change the state of an object or a variable. A  lot of (pure) functional languages don’t even provide mutability. That means, when you create a variable, then you can’t modify the state of the variable. If you say x=1, x should remain 1 no matter what. It sometimes seems a bit too restrictive. But restrictiveness can be helpful sometimes.&lt;/p&gt;
@@ -335,7 +353,7 @@ I would recommend you to take this course &lt;a href=&quot;https://www.coursera.
     <item>
       <title>Pass by Value or Reference</title>
       <link>http://fullouterjoin.me/2015/Pass-by-Value-or-Reference/</link>
-      <pubDate>Fri, 03 Apr 2015 00:00:00 +0530</pubDate>
+      <pubDate>Fri, 03 Apr 2015 00:00:00 -0700</pubDate>
       <author></author>
       <guid>http://fullouterjoin.me/2015/Pass-by-Value-or-Reference/</guid>
       <description>&lt;p&gt;Hello awesome people! When you are writing functions to modularize your code(if you are not, then it might be a code smell), you should know how the arguments are passed to the function and how they are stored. Let’s take a simple example. We have a function which takes in an int and increments it in the function.&lt;/p&gt;
@@ -505,7 +523,7 @@ If it was C, swap could have been written like this&lt;/p&gt;
     <item>
       <title>Quick sort pivot choose strategy</title>
       <link>http://fullouterjoin.me/2015/Quick-sort-pivot-comparison/</link>
-      <pubDate>Wed, 25 Mar 2015 00:00:00 +0530</pubDate>
+      <pubDate>Wed, 25 Mar 2015 00:00:00 -0700</pubDate>
       <author></author>
       <guid>http://fullouterjoin.me/2015/Quick-sort-pivot-comparison/</guid>
       <description>&lt;p&gt;Quick sort works by choosing an element x from the list A and places x in the correct position in A (all the elements to the left of x is lesser and all the elements to the right of x are greater than x). Quick sort is again called on the left lesser list and the right greater list to sort them recursively.&lt;/p&gt;
@@ -585,7 +603,7 @@ Median Element Pick 20920898
     <item>
       <title>3/4th of an engineer</title>
       <link>http://fullouterjoin.me/2011/3-quarters-of-engineer/</link>
-      <pubDate>Fri, 27 May 2011 00:00:00 +0530</pubDate>
+      <pubDate>Fri, 27 May 2011 00:00:00 -0700</pubDate>
       <author></author>
       <guid>http://fullouterjoin.me/2011/3-quarters-of-engineer/</guid>
       <description>&lt;p&gt;Yes, I’m almost an engineer, just a quarter remaining. I have come a long way crossing each and every obstacle that is put forth. Learnt a lot of things, experienced a lot. Well nothing teaches you better than your own experience. From hardcore Operating System to Environmental Science and from Cultural education to Computer Networks ( ahh TCP/IP you are so awesome), I have learnt a lot, I really have. Okay, I know all these things but what am I going to do with all the knowledge that I have? I really have no clue.&lt;/p&gt;
