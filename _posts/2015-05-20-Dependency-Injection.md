@@ -93,4 +93,4 @@ There are several frameworks which does a great job at making dependency injecti
 
 So It is best to Code to Interface and use Dependency Injection to reduce the coupling between components. Remove as much coupling as you can because having tightly coupled software would just be so not cool. Making some changes to a component will result in cascade of modification to its dependent components. If it is loosely coupled i.e no dependencies managed by that component, then we can contain the changes to that single component.
 
-[1]: https://vishnukarthikl.github.io/2015/Coding-to-Interfaces/
+[1]: {{site.url}}/2015/Coding-to-Interfaces/

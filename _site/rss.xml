@@ -5,8 +5,8 @@
     <link>http://fullouterjoin.me</link>
     <atom:link href="http://fullouterjoin.me/rss.xml" rel="self" type="application/rss+xml" />
     <language>en-US</language>
-    <pubDate>Sat, 03 Oct 2015 13:20:34 -0700</pubDate>
-    <lastBuildDate>Sat, 03 Oct 2015 13:20:34 -0700</lastBuildDate>
+    <pubDate>Mon, 05 Oct 2015 19:14:55 -0700</pubDate>
+    <lastBuildDate>Mon, 05 Oct 2015 19:14:55 -0700</lastBuildDate>
 
     
     <item>
@@ -100,7 +100,7 @@
 
 &lt;p&gt;So when we are building multi tier architectural software, there would be a service which would need to use a DAO(Data Access Objects) and if we have tight coupling over it, we would have to change the service every time the type of database changes. So we use dependency injection to inject the required DAO Implementation.&lt;/p&gt;
 
-&lt;p&gt;And it would be very advisable to &lt;a href=&quot;https://vishnukarthikl.github.io/2015/Coding-to-Interfaces/&quot;&gt;Code to Interface&lt;/a&gt;. So we can just ask for a Type rather than a concrete instance. It would be helpful to test also. We can inject mock objects during unit tests. Otherwise it is not even a unit test. So when we test a service we would not be actually making db calls, we would be mainly testing the service’s logic and not how we get the data. So we can inject a mock repository as a DAO to it. We shall be looking into what mocks are in future posts.&lt;/p&gt;
+&lt;p&gt;And it would be very advisable to &lt;a href=&quot;http://fullouterjoin.me/2015/Coding-to-Interfaces/&quot;&gt;Code to Interface&lt;/a&gt;. So we can just ask for a Type rather than a concrete instance. It would be helpful to test also. We can inject mock objects during unit tests. Otherwise it is not even a unit test. So when we test a service we would not be actually making db calls, we would be mainly testing the service’s logic and not how we get the data. So we can inject a mock repository as a DAO to it. We shall be looking into what mocks are in future posts.&lt;/p&gt;
 
 &lt;p&gt;There are several frameworks which does a great job at making dependency injection easy. I really like AngularJs’ (client side MVC), dependency injection mechanism. It helps me to separate logical components as services and inject them whenever I need then.&lt;/p&gt;
 
