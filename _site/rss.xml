@@ -2,19 +2,60 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FullOuterJoin</title>
-    <link>http://fullouterjoin.me</link>
-    <atom:link href="http://fullouterjoin.me/rss.xml" rel="self" type="application/rss+xml" />
+    <link>http://vishnukl.com</link>
+    <atom:link href="http://vishnukl.com/rss.xml" rel="self" type="application/rss+xml" />
     <language>en-US</language>
-    <pubDate>Mon, 05 Oct 2015 19:14:55 -0700</pubDate>
-    <lastBuildDate>Mon, 05 Oct 2015 19:14:55 -0700</lastBuildDate>
+    <pubDate>Sun, 13 Dec 2015 06:20:59 +0530</pubDate>
+    <lastBuildDate>Sun, 13 Dec 2015 06:20:59 +0530</lastBuildDate>
 
     
     <item>
-      <title>Longboarding</title>
-      <link>http://fullouterjoin.me/2015/Longboarding/</link>
-      <pubDate>Sat, 03 Oct 2015 00:00:00 -0700</pubDate>
+      <title>Angular JS's ng-if and watches</title>
+      <link>http://vishnukl.com/2015/Angular%20Js's%20weirdness/</link>
+      <pubDate>Sun, 13 Dec 2015 00:00:00 +0530</pubDate>
       <author></author>
-      <guid>http://fullouterjoin.me/2015/Longboarding/</guid>
+      <guid>http://vishnukl.com/2015/Angular%20Js's%20weirdness/</guid>
+      <description>&lt;p&gt;I am currently working on a reading list based on NLP, where people can search for topics and get relevant and similar documents. I added a checkbox that toggles displaying all the documents. I was watching on the model ‘isSelectAll’&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;switch&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;label&amp;gt;&lt;/span&gt;
+        De-select All
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;checkbox&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ng-model=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;isSelectAll&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;lever&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+        Select All
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/label&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$watch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;isSelectAll&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newVal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;matchedTopics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newVal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;selectAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;deSelectAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;But for some reason the watch was not getting triggered when I clicked on the checkbox. That was almost impossible, I was breaking my head for a few hours and then finally figured out why.&lt;/p&gt;
+
+&lt;p&gt;I had a search bar which gets the documents based on query, and before fetch, all the other elements were under ng-if false. This makes those elements render only after getting data.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;row&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ng-if=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;matchedTopics.length&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- everything including checkbox --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Turns out, apart from creating the html elements(which makes sense), the two way bindings are also not setup. So if some elements are under ng-if false and later becomes true, the bindings are messed up.&lt;/p&gt;
+
+&lt;p&gt;So to overcome this I had to make ng-if to ng-show. But I just thought that ng-if improves performance by not rendering contents till they are needed. Oh well ng-show wins this time.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Longboarding</title>
+      <link>http://vishnukl.com/2015/Longboarding/</link>
+      <pubDate>Sat, 03 Oct 2015 00:00:00 +0530</pubDate>
+      <author></author>
+      <guid>http://vishnukl.com/2015/Longboarding/</guid>
       <description>&lt;p&gt;One thing that I noticed when I was first went to USC was that there were lot of people in stakeboards and longboards. I liked how you can simply cruise around without much effort. I used to bike to all the places when I was India. I hated walking around campus going from one class to the other. So I borrowed a longboard from a friend and tried it out a few times but really couldn’t get the hang of it. Then I just chucked the idea of getting one myself.&lt;/p&gt;
 
 &lt;p&gt;Every time I walk to campus, I see people sliding past me. It was just teasing me. I was determined to learn it. What better way than just to buy one, so that you are obliged to learn it or it will be a waste of money. After researching about different types of boards, I finally decided to by &lt;a href=&quot;http://www.amazon.com/Sector-dropthrough-Longboard-Skateboard-42-0-Inch/dp/B007SDJJFO?tag=vglnkc2892-20&quot;&gt;Sector 9 Lookout&lt;/a&gt;.&lt;/p&gt;
@@ -29,10 +70,10 @@
     
     <item>
       <title>Dependency Injection</title>
-      <link>http://fullouterjoin.me/2015/Dependency-Injection/</link>
-      <pubDate>Wed, 20 May 2015 00:00:00 -0700</pubDate>
+      <link>http://vishnukl.com/2015/Dependency-Injection/</link>
+      <pubDate>Wed, 20 May 2015 00:00:00 +0530</pubDate>
       <author></author>
-      <guid>http://fullouterjoin.me/2015/Dependency-Injection/</guid>
+      <guid>http://vishnukl.com/2015/Dependency-Injection/</guid>
       <description>&lt;p&gt;When I was doing my first project in my TWU(ThoughtWorks University) we were building a webapp and we used Spring framework. I would have heard the word ‘dependency injection’ 100 times/day. When I started out, I didn’t know anything about it. I thought it must be some complicated thing because of its hip name. But later I found out it is so simple, yet so powerful.&lt;/p&gt;
 
 &lt;p&gt;Let’s say we have a component Car and that needs(depends an engine)  Engine. We would normally create a Car with Engine and all the logic of creation of the Engine goes inside the Car. The Engine could be a complex component by itself having dependency on something else like fuel.&lt;/p&gt;
@@ -100,7 +141,7 @@
 
 &lt;p&gt;So when we are building multi tier architectural software, there would be a service which would need to use a DAO(Data Access Objects) and if we have tight coupling over it, we would have to change the service every time the type of database changes. So we use dependency injection to inject the required DAO Implementation.&lt;/p&gt;
 
-&lt;p&gt;And it would be very advisable to &lt;a href=&quot;http://fullouterjoin.me/2015/Coding-to-Interfaces/&quot;&gt;Code to Interface&lt;/a&gt;. So we can just ask for a Type rather than a concrete instance. It would be helpful to test also. We can inject mock objects during unit tests. Otherwise it is not even a unit test. So when we test a service we would not be actually making db calls, we would be mainly testing the service’s logic and not how we get the data. So we can inject a mock repository as a DAO to it. We shall be looking into what mocks are in future posts.&lt;/p&gt;
+&lt;p&gt;And it would be very advisable to &lt;a href=&quot;http://vishnukl.com/2015/Coding-to-Interfaces/&quot;&gt;Code to Interface&lt;/a&gt;. So we can just ask for a Type rather than a concrete instance. It would be helpful to test also. We can inject mock objects during unit tests. Otherwise it is not even a unit test. So when we test a service we would not be actually making db calls, we would be mainly testing the service’s logic and not how we get the data. So we can inject a mock repository as a DAO to it. We shall be looking into what mocks are in future posts.&lt;/p&gt;
 
 &lt;p&gt;There are several frameworks which does a great job at making dependency injection easy. I really like AngularJs’ (client side MVC), dependency injection mechanism. It helps me to separate logical components as services and inject them whenever I need then.&lt;/p&gt;
 
@@ -111,10 +152,10 @@
     
     <item>
       <title>Coding to Interfaces</title>
-      <link>http://fullouterjoin.me/2015/Coding-to-Interfaces/</link>
-      <pubDate>Sun, 10 May 2015 00:00:00 -0700</pubDate>
+      <link>http://vishnukl.com/2015/Coding-to-Interfaces/</link>
+      <pubDate>Sun, 10 May 2015 00:00:00 +0530</pubDate>
       <author></author>
-      <guid>http://fullouterjoin.me/2015/Coding-to-Interfaces/</guid>
+      <guid>http://vishnukl.com/2015/Coding-to-Interfaces/</guid>
       <description>&lt;p&gt;Let’s say you are writing a piece of software which generates awesome things with call of a method. But for that you need to fetch some data and process it. For now let’s read a file and get the data.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AwesomenessGenerator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -224,10 +265,10 @@
     
     <item>
       <title>Perils of Mutability</title>
-      <link>http://fullouterjoin.me/2015/Perils-of-Mutability/</link>
-      <pubDate>Wed, 29 Apr 2015 00:00:00 -0700</pubDate>
+      <link>http://vishnukl.com/2015/Perils-of-Mutability/</link>
+      <pubDate>Wed, 29 Apr 2015 00:00:00 +0530</pubDate>
       <author></author>
-      <guid>http://fullouterjoin.me/2015/Perils-of-Mutability/</guid>
+      <guid>http://vishnukl.com/2015/Perils-of-Mutability/</guid>
       <description>&lt;p&gt;I was doing a course on coursera called &lt;a href=&quot;https://www.coursera.org/course/proglang&quot;&gt;Programming Languages&lt;/a&gt;. Finishing that course was a turning point for me to understand how languages work and acquire the adeptness to learn a new language. I was really interested when the topic mutability was being discussed. Mutability refers to the ability to change the state of an object or a variable. A  lot of (pure) functional languages don’t even provide mutability. That means, when you create a variable, then you can’t modify the state of the variable. If you say x=1, x should remain 1 no matter what. It sometimes seems a bit too restrictive. But restrictiveness can be helpful sometimes.&lt;/p&gt;
 
 &lt;p&gt;Let’s say we have a User who is created with an username, password and default roles.&lt;/p&gt;
@@ -352,10 +393,10 @@ I would recommend you to take this course &lt;a href=&quot;https://www.coursera.
     
     <item>
       <title>Pass by Value or Reference</title>
-      <link>http://fullouterjoin.me/2015/Pass-by-Value-or-Reference/</link>
-      <pubDate>Fri, 03 Apr 2015 00:00:00 -0700</pubDate>
+      <link>http://vishnukl.com/2015/Pass-by-Value-or-Reference/</link>
+      <pubDate>Fri, 03 Apr 2015 00:00:00 +0530</pubDate>
       <author></author>
-      <guid>http://fullouterjoin.me/2015/Pass-by-Value-or-Reference/</guid>
+      <guid>http://vishnukl.com/2015/Pass-by-Value-or-Reference/</guid>
       <description>&lt;p&gt;Hello awesome people! When you are writing functions to modularize your code(if you are not, then it might be a code smell), you should know how the arguments are passed to the function and how they are stored. Let’s take a simple example. We have a function which takes in an int and increments it in the function.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Functions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -522,10 +563,10 @@ If it was C, swap could have been written like this&lt;/p&gt;
     
     <item>
       <title>Quick sort pivot choose strategy</title>
-      <link>http://fullouterjoin.me/2015/Quick-sort-pivot-comparison/</link>
-      <pubDate>Wed, 25 Mar 2015 00:00:00 -0700</pubDate>
+      <link>http://vishnukl.com/2015/Quick-sort-pivot-comparison/</link>
+      <pubDate>Wed, 25 Mar 2015 00:00:00 +0530</pubDate>
       <author></author>
-      <guid>http://fullouterjoin.me/2015/Quick-sort-pivot-comparison/</guid>
+      <guid>http://vishnukl.com/2015/Quick-sort-pivot-comparison/</guid>
       <description>&lt;p&gt;Quick sort works by choosing an element x from the list A and places x in the correct position in A (all the elements to the left of x is lesser and all the elements to the right of x are greater than x). Quick sort is again called on the left lesser list and the right greater list to sort them recursively.&lt;/p&gt;
 
 &lt;p&gt;Most of the work is done for moving x from its original position to the sorted position. The number of comparisons made with x and other elements of the list depends on the size of the list. If the recursion call had split the list perfectly into two, the work gets reduced by half at each level.&lt;/p&gt;
@@ -602,10 +643,10 @@ Median Element Pick 20920898
     
     <item>
       <title>3/4th of an engineer</title>
-      <link>http://fullouterjoin.me/2011/3-quarters-of-engineer/</link>
-      <pubDate>Fri, 27 May 2011 00:00:00 -0700</pubDate>
+      <link>http://vishnukl.com/2011/3-quarters-of-engineer/</link>
+      <pubDate>Fri, 27 May 2011 00:00:00 +0530</pubDate>
       <author></author>
-      <guid>http://fullouterjoin.me/2011/3-quarters-of-engineer/</guid>
+      <guid>http://vishnukl.com/2011/3-quarters-of-engineer/</guid>
       <description>&lt;p&gt;Yes, I’m almost an engineer, just a quarter remaining. I have come a long way crossing each and every obstacle that is put forth. Learnt a lot of things, experienced a lot. Well nothing teaches you better than your own experience. From hardcore Operating System to Environmental Science and from Cultural education to Computer Networks ( ahh TCP/IP you are so awesome), I have learnt a lot, I really have. Okay, I know all these things but what am I going to do with all the knowledge that I have? I really have no clue.&lt;/p&gt;
 
 &lt;p&gt;When I was a kid when someone asks me what I wanted to become I would say ‘DOCTOR’. What am I now? A typical wanna-be software engineer. What went wrong? The computer that was bought for me. I was obsessed with it, be it playing games or surfing the Internet. I forgot what my original ambition was. I started to buy components and made my computer evolve. And now it’s a beast. The word hacker would definitely excite any teenager. It certainly does. Motivated by Die Hard 4, ‘Fire Sail’ was the word to give me goosebumps.&lt;/p&gt;
