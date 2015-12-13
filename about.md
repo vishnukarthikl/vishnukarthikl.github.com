@@ -14,7 +14,7 @@ One other thing that I am crazy about is [Ultimate Frisbee][7]. I play for a tea
 I'm going to post about random technical stuff, things that kindles my curiosity and my frustrations with the system. And there is a deep meaning in the blog title. Blog style inspired by Jon Gauthier.
 
 [2]: http://www.motechproject.org/about/implementations.html
-[3]: http://http://getgauge.io/
+[3]: http://getgauge.io/
 [4]: https://github.com/vishnukarthikl/calabash-android-java
 [5]: https://github.com/navaneeth/calabash-ios-java
 [6]: http://vorkout.com/
