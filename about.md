@@ -3,7 +3,14 @@ title: About
 layout: default
 ---
 
-Hi, I'm **Vishnu Lakshmanan**. I am a self proclaimed polyglot programmer, who is obsessed in getting my hands dirty with bleeding edge technology. I am currently a graduate student at University of Southern California where I'm majoring in Computer Science. I'm an ex-ThoughtWorker who worked with wonderful people on [Gauge][3] and few implementations of [MoTech][2] including Kilkari and Care. I also co-founded a startup called [Vorkout][6], a gym analytics product with which gym owners can run their gyms effectively by getting financial predictions and customer analysis. If you want to hire me, please check out my [LinkedIn][9].
+Hi, I'm **Vishnu Lakshmanan**. I am a self proclaimed polyglot programmer, who is obsessed in getting hands dirty with bleeding edge technology. I am currently a graduate student at University of Southern California where I'm majoring in Computer Science.
+ 
+* Currently interning at Amazon in Seattle for the summer.
+* Worked with amazing researchers at [Information Sciences Institute][10].
+* Ex-ThoughtWorker who worked with wonderful people on [Gauge][3] and few implementations of [MoTech][2] including Kilkari and Care. 
+* I also co-founded a startup called [Vorkout][6], a gym analytics product with which gym owners can run their gyms effectively by getting financial predictions and customer analysis.
+  
+If you are interested to hire me, please check out my [LinkedIn][9] or drop a mail at vishnucarbon [at] gmail.com.
 
 I was part of the core team which designed and released the early versions of [Gauge][3], so that makes me an expert in its internal workings. I also happened to collaborate on few other open source projects like [Calabash-Android-Java][4] and [Calabash-iOS-Java][5]. 
 
@@ -21,6 +28,7 @@ I'm going to post about random technical stuff, things that kindles my curiosity
 [7]: https://en.wikipedia.org/wiki/Ultimate_%28sport%29
 [8]: https://www.facebook.com/pages/DisCreed-Ultimate-Frisbee-Coimbatore-UFC/221724301228435
 [9]: https://www.linkedin.com/in/vishnukl
+[10]: http://www.isi.edu/home
 
 ### Active in
 
