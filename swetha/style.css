@@ -1,0 +1,22 @@
+body {
+    background-color: pink;
+}
+
+#main {
+    color: white;
+    padding-left: 20%;
+    padding-top: 5%;
+}
+
+#spinner {
+    margin-left: 10px;
+    margin-bottom: -5px;
+}
+
+#btn-container {
+    margin-top: 20%;
+}
+
+#secret-message {
+    margin-top: 10px;
+}

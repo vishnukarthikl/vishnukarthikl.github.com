@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
+          integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"
+            integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" title="Style">
+    <script src="script.js"></script>
+
+</head>
+<body>
+<div id="main" class="container">
+    <div>
+        <div class="display-1">Happy Birthday</div>
+        <div class="display-1">Swetha</div>
+        <div id="btn-container">
+            <button type="button" id="secretbtn" class="btn btn-outline-light btn-lg" onclick="showMessage()">Secret
+                Message
+            </button>
+            <div class="spinner-grow d-none" id="spinner" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div id="secret-message" class="d-none display-3"></div>
+
+    </div>
+
+</div>
+</body>
+</html>
